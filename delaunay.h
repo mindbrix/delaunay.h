@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+#pragma clang diagnostic ignored "-Wcomma"
+
 typedef struct {
     int p1, p2, p3;
 } ITRIANGLE;
