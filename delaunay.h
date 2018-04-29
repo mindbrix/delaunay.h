@@ -18,7 +18,7 @@ typedef struct {
 } CIRCLE;
 
 
-double incircle(double xp, double yp, double x1, double y1, double x2, double y2, double x3, double y3) {
+static double incircle(double xp, double yp, double x1, double y1, double x2, double y2, double x3, double y3) {
     double adx, ady, bdx, bdy, cdx, cdy;
     double abdet, bcdet, cadet;
     double alift, blift, clift;
@@ -38,7 +38,7 @@ double incircle(double xp, double yp, double x1, double y1, double x2, double y2
     return alift * bcdet + blift * cadet + clift * abdet;
 }
 
-void circumcenter(double ax, double ay, double bx, double by, double cx, double cy, double *xc, double *yc, double *xmax) {
+static void circumcenter(double ax, double ay, double bx, double by, double cx, double cy, double *xc, double *yc, double *xmax) {
     double dx, dy, ex, ey;
     double bl, cl, d, r;
     
@@ -59,7 +59,7 @@ void circumcenter(double ax, double ay, double bx, double by, double cx, double 
     *xmax = *xc + r;
 }
 
-int XYZCompare(const void *v1, const void *v2) {
+static int XYZCompare(const void *v1, const void *v2) {
     XYZ *p1 = (XYZ *)v1;
     XYZ *p2 = (XYZ *)v2;
     if (p1->x < p2->x)
@@ -78,7 +78,7 @@ int XYZCompare(const void *v1, const void *v2) {
  The triangle array 'v' should be malloced to 4 * nv
  The vertex array pxyz must be big enough to hold 3 more points
  */
-int Triangulate(int nv, XYZ *pxyz, ITRIANGLE *v, int vsize, int *ntri)
+static int Triangulate(int nv, XYZ *pxyz, ITRIANGLE *v, int vsize, int *ntri)
 {
     ITRIANGLE *completed = v, *vend = v + vsize, *vstart = vend, *tri;
     CIRCLE *circles = NULL, *circle;
@@ -232,3 +232,4 @@ skip:
     free(edges);
     return(status);
 }
+
